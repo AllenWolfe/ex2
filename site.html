@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid Layout</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Raleway', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .support-warning {
+            background: #ccb11c;
+            color: #000;
+            display: block;
+            font-weight: 700;
+            opacity: 0.95;
+            padding: 3rem;
+            position: fixed;
+            text-align: center;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 5;
+        }
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        @supports (display: grid) {
+            .support-warning {
+                display: none;
+            }
+            .grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: repeat(2, minmax(50vh, auto));
+            }
+        }
+        .grid__item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 3.5rem;
+            max-width: 400px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .grid__item:hover {
+            transform: scale(1.05);
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        .theme-gray { background: #808080; color: #ffffff; }
+        .theme-red { background: #d32f2f; color: #ffffff; }
+        .theme-blue { background: #1976D2; color: #ffffff; }
+        .theme-green { background: #388E3C; color: #ffffff; }
+    </style>
+</head>
+<body>
+    <div class="support-warning">Ваш браузер не поддерживает гриды. Обновите его!</div>
+    <div class="grid grid--4x4">
+        <div class="grid__item theme-gray">Заголовок грида</div>
+        <div class="grid__item theme-red">Описание блока</div>
+        <div class="grid__item theme-blue">Содержимое</div>
+        <div class="grid__item theme-green">Дополнительный текст</div>
+    </div>
+</body>
+</html>
